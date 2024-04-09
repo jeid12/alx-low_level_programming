@@ -1,13 +1,19 @@
-#include <stdio.h>
 #include <unistd.h>
-/**
- * main - Prints out the last part of a quote in the standard error.
- * Return: 1 if success.
- */
-int main(void)
-{
-	write(2, "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n", 58);
+#include <stdlib.h>
+#include <string.h>
+#include <errno.h>
 
-	return (1);
+int main(void) {
+    const char *message = "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n";
+    ssize_t len = strlen(message);
+    ssize_t bytes_written = write(STDERR_FILENO, message, len);
+    
+    if (bytes_written == -1) {
+        
+        return 1;
+    }
+
+    
+    return 1;
 }
 
